@@ -1,31 +1,30 @@
 package edu.cibertec.beans;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
-public class CategoriaBean {
-	private String idCategoria;
+public class MaterialBean implements Serializable{
+	private String idMaterial;
 	private String codigo;
 	private String nombre;
 	private String estado;
 	
-	
-	public CategoriaBean() {
+	public MaterialBean() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CategoriaBean(String idCategoria,String codigo,String nombre,String estado) {
-		this.idCategoria = idCategoria;
+	public MaterialBean(String idMaterial,String codigo,String nombre,String estado) {
+		this.idMaterial=idMaterial;
 		this.codigo=codigo;
 		this.nombre=nombre;
 		this.estado=estado;
 	}
-	
-	public String getIdCategoria() {
-		return idCategoria;
+	public String getIdMaterial() {
+		return idMaterial;
 	}
-	public void setIdCategoria(String idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setIdMaterial(String idMaterial) {
+		this.idMaterial = idMaterial;
 	}
 	public String getCodigo() {
 		return codigo;
@@ -45,4 +44,6 @@ public class CategoriaBean {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	
 }

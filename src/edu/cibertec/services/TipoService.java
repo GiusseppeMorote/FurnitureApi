@@ -12,16 +12,16 @@ import edu.cibertec.dao.DAOFactory;
 import edu.cibertec.dao.TipoDAO;
 
 @Path("/tipo")
-public class TipoServices {
+public class TipoService {
 
 	DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 	TipoDAO tipoService = factory.getTipo();
 	
 	
-	//http://localhost:8080/ApiRestFurniture/tipo/json
+	//http://localhost:8080/ApiRestFurniture/tipo/getTipo
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("json")
+	@Path("getTipo")
 	public ArrayList<TipoBean> getTipo() {
 		ArrayList<TipoBean> lista = null;
 		try {

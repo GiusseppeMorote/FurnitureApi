@@ -26,7 +26,7 @@ public class TipoMySQL implements TipoDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				bean = new TipoBean();				
-				bean.setIdCategoria(rs.getString(1));
+				bean.setIdTipo(rs.getString(1));
 				bean.setCodigo(rs.getString(2));
 				bean.setNombre(rs.getString(3));
 				bean.setIdCategoria(rs.getString(4));
@@ -47,7 +47,7 @@ public class TipoMySQL implements TipoDAO {
 	public static void main(String[] args) throws Exception {
 		TipoMySQL metodo = new TipoMySQL();
 		for (TipoBean lista : metodo.getTipo()) {
-			System.out.println("lista ==> "+lista.getCodigo());
+			System.out.println("lista ==> "+lista.getCodigo()+" "+lista.getIdTipo());
 		}
 	}
 

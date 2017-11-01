@@ -3,7 +3,9 @@ package edu.cibertec.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import edu.cibertec.dao.CategoriaDAO;
 import edu.cibertec.dao.DAOFactory;
+import edu.cibertec.dao.ProductoDAO;
 import edu.cibertec.dao.TipoDAO;
 
 public class MysqlDAOFactory extends DAOFactory {
@@ -31,5 +33,15 @@ public class MysqlDAOFactory extends DAOFactory {
 	@Override
 	public TipoDAO getTipo() {
 		return new TipoMySQL();
+	}
+
+	@Override
+	public CategoriaDAO getCategoria() {
+		return new CategoriaMySQL();
+	}
+
+	@Override
+	public ProductoDAO getProducto() {
+		return new ProductoMySQL();
 	}
 }
