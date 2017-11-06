@@ -6,28 +6,38 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class ProductoBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String idProducto;
-	private String codigoProducto;
-	private String nombreProducto;
-	private String imagenProducto;
-	private String precioProducto;
-	private String stockMinimoProducto;
-	private String stockActualProducto;
-	private String garantiaProducto;
-	private String recomendacionProducto;
-	private String fechaRegistroProducto;
-
-	private String color;
+	private String codigo;
+	private String nombre;
+	private String imagen;
+	private String precio;
 	private String descuento;
+	private String stockMinimo;
+	private String stockActual;
+	private String garantia;
+	private String recomendacion;
+	private String fechaRegistro;
+	private String color;
 
+	// private String idTipo;
+	// private String nombreTipo;
+	// private String idMarca;
+	// private String nombreMarca;
+	// private String idMaterial;
+	// private String nombreMaterial;
 	private TipoBean tipo;
 	private MarcaBean marca;
 	private MaterialBean material;
-	private MaterialAcabadoBean materialAcabado;
 
-	private String altoProducto;
-	private String anchoProducto;
-	private String pesoProducto;
+	private String alto;
+	private String ancho;
+	private String peso;
+
 	private String cantidadCajas;
 	private String numeroPuertas;
 	private String cantidadPersonas;
@@ -35,141 +45,11 @@ public class ProductoBean implements Serializable {
 	private String apoyaBrazos;
 	private String reclinable;
 	private String espesor;
-	private String estadoProducto;
+
+	private String estado;
 
 	public ProductoBean() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public ProductoBean(String idProducto, String codigoProducto, String nombreProducto, String imagenProducto,
-			String precioProducto, String stockMinimoProducto, String stockActualProducto, String garantiaProducto,
-			String recomendacionProducto, String fecharegistroProducto, String color, String descuento, TipoBean tipo,
-			MarcaBean marca, MaterialBean material, MaterialAcabadoBean materialAcabado, String altoProducto,
-			String anchoProducto, String pesoProducto, String cantidadCajas, String numeroPuertas,
-			String cantidadPersonas, String resistencia, String apoyaBrazos, String reclinable, String espesor,
-			String estadoProducto) {
-		this.idProducto = idProducto;
-		this.codigoProducto=codigoProducto;
-		this.imagenProducto=imagenProducto;
-		this.precioProducto=precioProducto;
-		this.stockMinimoProducto=stockMinimoProducto;
-		this.stockActualProducto=stockActualProducto;
-		this.garantiaProducto=garantiaProducto;
-		this.recomendacionProducto=recomendacionProducto;
-		this.fechaRegistroProducto=fecharegistroProducto;
-		this.color=color;
-		this.descuento=descuento;
-		this.tipo=tipo;
-		this.marca=marca;
-		this.material=material;
-		this.materialAcabado=materialAcabado;
-		this.altoProducto=altoProducto;
-		this.anchoProducto=anchoProducto;
-		this.pesoProducto=pesoProducto;
-		this.cantidadCajas=cantidadCajas;
-		this.numeroPuertas=numeroPuertas;
-		this.cantidadPersonas=cantidadPersonas;
-		this.resistencia=resistencia;
-		this.apoyaBrazos=apoyaBrazos;
-		this.reclinable=reclinable;
-		this.espesor=espesor;
-		this.estadoProducto=estadoProducto;
-	}
-
-	public String getIdProducto() {
-		return idProducto;
-	}
-
-	public void setIdProducto(String idProducto) {
-		this.idProducto = idProducto;
-	}
-
-	public String getCodigoProducto() {
-		return codigoProducto;
-	}
-
-	public void setCodigoProducto(String codigoProducto) {
-		this.codigoProducto = codigoProducto;
-	}
-
-	public String getNombreProducto() {
-		return nombreProducto;
-	}
-
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
-	}
-
-	public String getImagenProducto() {
-		return imagenProducto;
-	}
-
-	public void setImagenProducto(String imagenProducto) {
-		this.imagenProducto = imagenProducto;
-	}
-
-	public String getPrecioProducto() {
-		return precioProducto;
-	}
-
-	public void setPrecioProducto(String precioProducto) {
-		this.precioProducto = precioProducto;
-	}
-
-	public String getStockMinimoProducto() {
-		return stockMinimoProducto;
-	}
-
-	public void setStockMinimoProducto(String stockMinimoProducto) {
-		this.stockMinimoProducto = stockMinimoProducto;
-	}
-
-	public String getStockActualProducto() {
-		return stockActualProducto;
-	}
-
-	public void setStockActualProducto(String stockActualProducto) {
-		this.stockActualProducto = stockActualProducto;
-	}
-
-	public String getGarantiaProducto() {
-		return garantiaProducto;
-	}
-
-	public void setGarantiaProducto(String garantiaProducto) {
-		this.garantiaProducto = garantiaProducto;
-	}
-
-	public String getRecomendacionProducto() {
-		return recomendacionProducto;
-	}
-
-	public void setRecomendacionProducto(String recomendacionProducto) {
-		this.recomendacionProducto = recomendacionProducto;
-	}
-
-	public String getFechaRegistroProducto() {
-		return fechaRegistroProducto;
-	}
-
-	public void setFechaRegistroProducto(String fechaRegistroProducto) {
-		this.fechaRegistroProducto = fechaRegistroProducto;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getDescuento() {
-		return descuento;
-	}
-
-	public void setDescuento(String descuento) {
-		this.descuento = descuento;
 	}
 
 	public TipoBean getTipo() {
@@ -196,36 +76,124 @@ public class ProductoBean implements Serializable {
 		this.material = material;
 	}
 
-	public MaterialAcabadoBean getMaterialAcabado() {
-		return materialAcabado;
+	public String getIdProducto() {
+		return idProducto;
 	}
 
-	public void setMaterialAcabado(MaterialAcabadoBean materialAcabado) {
-		this.materialAcabado = materialAcabado;
+	public void setIdProducto(String idProducto) {
+		this.idProducto = idProducto;
 	}
 
-	public String getAltoProducto() {
-		return altoProducto;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setAltoProducto(String altoProducto) {
-		this.altoProducto = altoProducto;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
-	public String getAnchoProducto() {
-		return anchoProducto;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setAnchoProducto(String anchoProducto) {
-		this.anchoProducto = anchoProducto;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getPesoProducto() {
-		return pesoProducto;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setPesoProducto(String pesoProducto) {
-		this.pesoProducto = pesoProducto;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(String precio) {
+		this.precio = precio;
+	}
+
+	public String getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(String descuento) {
+		this.descuento = descuento;
+	}
+
+	public String getStockMinimo() {
+		return stockMinimo;
+	}
+
+	public void setStockMinimo(String stockMinimo) {
+		this.stockMinimo = stockMinimo;
+	}
+
+	public String getStockActual() {
+		return stockActual;
+	}
+
+	public void setStockActual(String stockActual) {
+		this.stockActual = stockActual;
+	}
+
+	public String getGarantia() {
+		return garantia;
+	}
+
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
+	}
+
+	public String getRecomendacion() {
+		return recomendacion;
+	}
+
+	public void setRecomendacion(String recomendacion) {
+		this.recomendacion = recomendacion;
+	}
+
+	public String getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getAlto() {
+		return alto;
+	}
+
+	public void setAlto(String alto) {
+		this.alto = alto;
+	}
+
+	public String getAncho() {
+		return ancho;
+	}
+
+	public void setAncho(String ancho) {
+		this.ancho = ancho;
+	}
+
+	public String getPeso() {
+		return peso;
+	}
+
+	public void setPeso(String peso) {
+		this.peso = peso;
 	}
 
 	public String getCantidadCajas() {
@@ -284,12 +252,12 @@ public class ProductoBean implements Serializable {
 		this.espesor = espesor;
 	}
 
-	public String getEstadoProducto() {
-		return estadoProducto;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setEstadoProducto(String estadoProducto) {
-		this.estadoProducto = estadoProducto;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

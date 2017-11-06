@@ -5,5 +5,5 @@ import java.util.ArrayList;
 import edu.cibertec.beans.TipoBean;
 
 public interface TipoDAO {
-	ArrayList<TipoBean> getTipo() throws Exception;
+	public ArrayList<TipoBean> getTipoAll() throws Exception;
 }

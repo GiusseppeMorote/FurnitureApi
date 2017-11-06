@@ -5,21 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.json.JSONObject;
-
-import com.sun.net.httpserver.HttpServer;
-
 import edu.cibertec.beans.CategoriaBean;
 import edu.cibertec.dao.CategoriaDAO;
 
 public class CategoriaMySQL implements CategoriaDAO {
-	// obtengo mi
-	HttpServletRequest request;
 
 	@Override
-	public ArrayList<CategoriaBean> getCategoria() throws Exception {
+	public ArrayList<CategoriaBean> getCategoriaAll() throws Exception {
 		ArrayList<CategoriaBean> lista = new ArrayList<CategoriaBean>();
 		CategoriaBean bean = null;
 		String base = "furniture";
@@ -46,18 +38,13 @@ public class CategoriaMySQL implements CategoriaDAO {
 			System.err.println("Error en getCategoria() ==> " + e.getMessage());
 			e.getLocalizedMessage();
 		} finally {
-
+			rs.close();
+			ps.close();
+			connection.close();
 		}
 
 		return lista;
 	}
-
-	// public static void main(String[] args) throws Exception {
-	// CategoriaMySQL m = new CategoriaMySQL();
-	// for (CategoriaBean lista : m.getCategoria()) {
-	// System.out.println("lista=>" + lista.getCodigo());
-	// }
-	// }
 
 	@Override
 	public ArrayList<CategoriaBean> getCategoriaEspecifica(String idCategoria) throws Exception {
@@ -73,9 +60,9 @@ public class CategoriaMySQL implements CategoriaDAO {
 			SQL_SELECT_FOR = "select idCategoria,codigo,nombre,estado from categoria where idCategoria = ?";
 			ps = connection.prepareStatement(SQL_SELECT_FOR);
 
-//			String value = request.getParameter(idCategoria);
+			// String value = request.getParameter(idCategoria);
 			ps.setString(1, idCategoria);
-
+			System.out.println("SQL FOR => " + SQL_SELECT_FOR);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				bean = new CategoriaBean();
@@ -91,17 +78,11 @@ public class CategoriaMySQL implements CategoriaDAO {
 			System.err.println("Error en getCategoriaEspecifica() ==> " + e.getMessage());
 			e.getLocalizedMessage();
 		} finally {
-
+			rs.close();
+			ps.close();
+			connection.close();
 		}
 
 		return lista;
 	}
-
-//	 public static void main(String[] args) throws Exception {
-//	 CategoriaMySQL m = new CategoriaMySQL();
-//	 for (CategoriaBean lista : m.getCategoriaEspecifica("2")) {
-//	 System.out.println("lista=>" + lista.getCodigo());
-//	 }
-//	 }
-
 }

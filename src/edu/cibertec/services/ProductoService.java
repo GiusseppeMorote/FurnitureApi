@@ -24,7 +24,7 @@ public class ProductoService {
 	public ArrayList<ProductoBean> getProductos() {
 		ArrayList<ProductoBean> lista = null;
 		try {
-			lista = objProducto.getProductos();
+			lista = objProducto.getProductosAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error en ProductoService - getProductos");

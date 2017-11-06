@@ -25,7 +25,7 @@ public class TipoService {
 	public ArrayList<TipoBean> getTipo() {
 		ArrayList<TipoBean> lista = null;
 		try {
-			lista = tipoService.getTipo();
+			lista = tipoService.getTipoAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error en TipoServices() - getTipo()" + e.getMessage());

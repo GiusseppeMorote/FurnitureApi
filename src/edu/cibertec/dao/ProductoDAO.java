@@ -5,5 +5,8 @@ import java.util.ArrayList;
 import edu.cibertec.beans.ProductoBean;
 
 public interface ProductoDAO {
-	ArrayList<ProductoBean> getProductos() throws Exception;
+	
+	public ArrayList<ProductoBean> getProductosAll() throws Exception;
+	public ArrayList<ProductoBean> getProductoPorTipo(String idTipo) throws Exception;
+	
 }

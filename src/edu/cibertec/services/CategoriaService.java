@@ -2,6 +2,7 @@ package edu.cibertec.services;
 
 import java.util.ArrayList;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -29,7 +30,7 @@ public class CategoriaService {
 	public ArrayList<CategoriaBean> getCategoria() {
 		ArrayList<CategoriaBean> lista = null;
 		try {
-			lista = categoriaService.getCategoria();
+			lista = categoriaService.getCategoriaAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error en CategoriaService() - getCategoria()" + e.getMessage());
@@ -39,23 +40,43 @@ public class CategoriaService {
 	}
 
 	// http://localhost:8080/ApiRestFurniture/categoria/getCategoriaEspecifica
-	@POST
+//	@POST
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Path("getCategoriaEspecifica")
+//	public ArrayList<CategoriaBean> getCategoriaEspecifica(final MyJaxBean input) {
+//		System.out.println("param1 = " + input.param1);
+////	    System.out.println("param2 = " + input.param2);
+//		ArrayList<CategoriaBean> lista = null;
+////		try {
+////
+////			lista = categoriaService.getCategoriaEspecifica(idCategoria);
+////			System.out.println("idCategoria==>" + idCategoria);
+////		} catch (Exception e) {
+////			e.printStackTrace();
+////			System.err.println("Error en CategoriaService() - getCategoriaEspecifica()" + e.getMessage());
+////			e.getLocalizedMessage();
+////		}
+//		return lista;
+//	}
+	
+	//http://localhost:8080/ApiRestFurniture/categoria/getCategoriaEspecifica/{idCategoria}
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("getCategoriaEspecifica")
-	public ArrayList<CategoriaBean> getCategoriaEspecifica(final MyJaxBean input) {
-		System.out.println("param1 = " + input.param1);
-//	    System.out.println("param2 = " + input.param2);
+	@Path("getCategoriaEspecifica/{idCategoria}")
+	public ArrayList<CategoriaBean> getCategoriaEspecifica(@PathParam("idCategoria") String idCategoria) {
+
 		ArrayList<CategoriaBean> lista = null;
-//		try {
-//
-//			lista = categoriaService.getCategoriaEspecifica(idCategoria);
-//			System.out.println("idCategoria==>" + idCategoria);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.err.println("Error en CategoriaService() - getCategoriaEspecifica()" + e.getMessage());
-//			e.getLocalizedMessage();
-//		}
+		try {
+
+			lista = categoriaService.getCategoriaEspecifica(idCategoria);
+			System.out.println("idCategoria==>" + idCategoria);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error en CategoriaService() - getCategoriaEspecifica()" + e.getMessage());
+			e.getLocalizedMessage();
+		}
 		return lista;
 	}
+	
 
 }
