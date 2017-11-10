@@ -25,6 +25,7 @@ public class CategoriaMySQL implements CategoriaDAO {
 			SQL_SELECT = "select idCategoria,codigo,nombre,estado from categoria";
 			ps = connection.prepareStatement(SQL_SELECT);
 			rs = ps.executeQuery();
+			System.out.println("SQL SELECT => " + SQL_SELECT);
 			while (rs.next()) {
 				bean = new CategoriaBean();
 				bean.setIdCategoria(rs.getString(1));
@@ -46,6 +47,13 @@ public class CategoriaMySQL implements CategoriaDAO {
 		return lista;
 	}
 
+	public static void main(String[] args) throws Exception {
+		CategoriaMySQL d = new CategoriaMySQL();
+		ArrayList<CategoriaBean> lista = d.getCategoriaEspecifica("1");
+		for(CategoriaBean b : lista){
+			System.out.println(b.getIdCategoria() + " / " + b.getNombre());
+		}
+	}
 	@Override
 	public ArrayList<CategoriaBean> getCategoriaEspecifica(String idCategoria) throws Exception {
 		ArrayList<CategoriaBean> lista = new ArrayList<CategoriaBean>();
@@ -82,7 +90,7 @@ public class CategoriaMySQL implements CategoriaDAO {
 			ps.close();
 			connection.close();
 		}
-
+		
 		return lista;
 	}
 }
