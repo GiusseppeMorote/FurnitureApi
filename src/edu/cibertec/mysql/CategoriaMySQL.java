@@ -47,13 +47,6 @@ public class CategoriaMySQL implements CategoriaDAO {
 		return lista;
 	}
 
-	public static void main(String[] args) throws Exception {
-		CategoriaMySQL d = new CategoriaMySQL();
-		ArrayList<CategoriaBean> lista = d.getCategoriaEspecifica("1");
-		for(CategoriaBean b : lista){
-			System.out.println(b.getIdCategoria() + " / " + b.getNombre());
-		}
-	}
 	@Override
 	public ArrayList<CategoriaBean> getCategoriaEspecifica(String idCategoria) throws Exception {
 		ArrayList<CategoriaBean> lista = new ArrayList<CategoriaBean>();
@@ -90,7 +83,76 @@ public class CategoriaMySQL implements CategoriaDAO {
 			ps.close();
 			connection.close();
 		}
-		
+
 		return lista;
 	}
+
+	@Override
+	public int cantidadCategoria() throws Exception {
+		int cant = 0;
+
+		return cant;
+	}
+
+	private int validarExistenciaCategoria(String nombre) throws Exception {
+
+		int cant = 0;
+		String sql = "";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String base = "furniture";
+		Connection cn = null;
+
+		try {
+			cn = MysqlDAOFactory.obtenerConexion(base);
+			sql = " select count(*) as cant from categoria where nombre = ?";
+			ps = cn.prepareStatement(sql);
+			ps.setString(1, nombre);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				cant = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			System.out.println("validarExistenciaCategoria => " + e.getMessage());
+			cant = 0;
+		} finally {
+			rs.close();
+			ps.close();
+			cn.close();
+		}
+
+		return cant;
+	}
+
+	public static void main(String[] args) throws Exception {
+		CategoriaMySQL d = new CategoriaMySQL();
+		System.out.println(d.insertarCategoria("asd"));
+	}
+
+	@Override
+	public int insertarCategoria(String nombre) throws Exception {
+		int cant = 0;
+		
+		return cant;
+	}
+
+	@Override
+	public CategoriaBean obtenerCategoria(String idCategoria) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int desactivarCategoria(String idCategoria) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int activarCategoria(String idCategoria) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
