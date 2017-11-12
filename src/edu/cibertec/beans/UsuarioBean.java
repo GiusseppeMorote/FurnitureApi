@@ -12,7 +12,6 @@ public class UsuarioBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String idUsuario;
-	private String nickname;
 	private String email;
 	private String clave;
 	private String fechaRegistro;
@@ -29,12 +28,26 @@ public class UsuarioBean implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UsuarioBean(String idUsuario, String nickname, String email, String clave, String fechaRegistro, String tipo,
-			String nombre, String apellido, String dni, String fechaNacimiento, String telefono, String direccion,
-			String estado) {
+	public UsuarioBean(String idUsuario, String email, String clave, String fechaRegistro, String tipo, String nombre,
+			String apellido, String dni, String fechaNacimiento, String telefono, String direccion, String estado) {
 
 		this.idUsuario = idUsuario;
-		this.nickname = nickname;
+		this.email = email;
+		this.clave = clave;
+		this.fechaRegistro = fechaRegistro;
+		this.tipo = tipo;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.fechaNacimiento = fechaNacimiento;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.estado = estado;
+	}
+
+	public UsuarioBean(String email, String clave, String fechaRegistro, String tipo, String nombre, String apellido,
+			String dni, String fechaNacimiento, String telefono, String direccion, String estado) {
+
 		this.email = email;
 		this.clave = clave;
 		this.fechaRegistro = fechaRegistro;
@@ -54,14 +67,6 @@ public class UsuarioBean implements Serializable {
 
 	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
 	}
 
 	public String getEmail() {
