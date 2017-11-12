@@ -17,23 +17,50 @@ public class ProductoService {
 	DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 	ProductoDAO objProducto = factory.getProducto();
 
-	//http://localhost:8080/ApiRestFurniture/producto/getProducto
+	// http://localhost:8080/ApiRestFurniture/producto/getProductosForSale
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("getProducto")
-	public ArrayList<ProductoBean> getProductos() {
+	@Path("getProductosForSale")
+	public ArrayList<ProductoBean> getProductosForSale() {
 		ArrayList<ProductoBean> lista = null;
 		try {
-			lista = objProducto.getProductosAll();
+			lista = objProducto.getProductosAll("a", "", "");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error en ProductoService - getProductos");
 		}
 		return lista;
 	}
-	
-	
-	
-	
+
+	// http://localhost:8080/ApiRestFurniture/producto/getProductosNow
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("getProductosNow")
+	public ArrayList<ProductoBean> getProductosNow() {
+		ArrayList<ProductoBean> lista = null;
+		try {
+			lista = objProducto.getProductosAll("", "a", "");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error en ProductoService - getProductos");
+		}
+		return lista;
+	}
+
+	// http://localhost:8080/ApiRestFurniture/producto/getProductosPopular
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("getProductosPopular")
+	public ArrayList<ProductoBean> getProductosPopular() {
+		ArrayList<ProductoBean> lista = null;
+		try {
+			lista = objProducto.getProductosAll("", "", "a");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error en ProductoService - getProductos");
+		}
+		return lista;
+	}
 
 }

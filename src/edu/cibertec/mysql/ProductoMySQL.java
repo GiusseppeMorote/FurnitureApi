@@ -11,6 +11,7 @@ import edu.cibertec.beans.MaterialBean;
 import edu.cibertec.beans.ProductoBean;
 import edu.cibertec.beans.TipoBean;
 import edu.cibertec.dao.ProductoDAO;
+import sun.net.www.content.image.x_xpixmap;
 
 public class ProductoMySQL implements ProductoDAO {
 
@@ -29,17 +30,14 @@ public class ProductoMySQL implements ProductoDAO {
 
 		try {
 			connection = MysqlDAOFactory.obtenerConexion(base);
-			SQL_SELECT 
-					= " select a.idProducto, a.codigo, a.nombre, a.imagen, a.precio, "
+			SQL_SELECT = " select a.idProducto, a.codigo, a.nombre, a.imagen, a.precio, "
 					+ " a.descuento, a.stockMinimo, a.stockActual, a.garantia, a.recomendacion, "
 					+ " a.fechaRegistro, a.color, a.idTipo, b.codigo, b.nombre, b.estado, a.idMarca, "
 					+ " c.codigo, c.nombre, c.estado, a.idMaterial, d.codigo, d.nombre, d.estado, a.alto, a.ancho, "
 					+ " a.peso, a.cantidadCajas, a.numeroPuertas, a.cantidadPersonas, a.resistencia, "
-					+ " a.apoyaBrazos, a.reclinable, a.espesor, a.estado " 
-					+ " from producto a inner join tipo b "
+					+ " a.apoyaBrazos, a.reclinable, a.espesor, a.estado " + " from producto a inner join tipo b "
 					+ " on a.idTipo=b.idTipo inner join marca c" + " on a.idMarca=c.idMarca inner join material d "
-					+ " on a.idMaterial=d.idMaterial "
-					+ " where a.idTipo = ?";
+					+ " on a.idMaterial=d.idMaterial " + " where a.idTipo = ?";
 			ps = connection.prepareStatement(SQL_SELECT);
 			ps.setString(1, idTipo);
 			rs = ps.executeQuery();
@@ -50,9 +48,9 @@ public class ProductoMySQL implements ProductoDAO {
 				tipo = new TipoBean();
 				marca = new MarcaBean();
 				material = new MaterialBean();
-				
+
 				int i = 1;
-				
+
 				bean.setIdProducto(rs.getString(i++));
 				bean.setCodigo(rs.getString(i++));
 				bean.setNombre(rs.getString(i++));
@@ -111,7 +109,7 @@ public class ProductoMySQL implements ProductoDAO {
 	}
 
 	@Override
-	public ArrayList<ProductoBean> getProductosAll() throws Exception {
+	public ArrayList<ProductoBean> getProductosAll(String forSale, String now, String popular) throws Exception {
 		ArrayList<ProductoBean> lista = new ArrayList<>();
 		MarcaBean marca = null;
 		MaterialBean material = null;
@@ -124,20 +122,32 @@ public class ProductoMySQL implements ProductoDAO {
 		ResultSet rs = null;
 		String SQL_SELECT = "";
 
+		String x_forSale = "";
+		String x_now = "";
+		String x_popular = "";
 		try {
 			connection = MysqlDAOFactory.obtenerConexion(base);
-			SQL_SELECT 
-					= " select a.idProducto, a.codigo, a.nombre, a.imagen, a.precio, "
+			if (!forSale.equals("")) {
+				x_forSale = "";
+			}
+
+			if (!now.equals("")) {
+				x_now = " order by a.fechaRegistro desc ";
+			}
+
+			if (!popular.equals("")) {
+				x_popular = " where a.stockActual <=25 ";
+			}
+			SQL_SELECT = " select a.idProducto, a.codigo, a.nombre, a.imagen, a.precio, "
 					+ " a.descuento, a.stockMinimo, a.stockActual, a.garantia, a.recomendacion, "
 					+ " a.fechaRegistro, a.color, a.idTipo, b.codigo, b.nombre, b.estado, "
 					+ " b.idCategoria,e.codigo,e.nombre,e.estado, a.idMarca, "
 					+ " c.codigo, c.nombre, c.estado, a.idMaterial, d.codigo, d.nombre, d.estado, a.alto, a.ancho, "
 					+ " a.peso, a.cantidadCajas, a.numeroPuertas, a.cantidadPersonas, a.resistencia, "
-					+ " a.apoyaBrazos, a.reclinable, a.espesor, a.estado " 
-					+ " from producto a inner join tipo b "
+					+ " a.apoyaBrazos, a.reclinable, a.espesor, a.estado " + " from producto a inner join tipo b "
 					+ " on a.idTipo=b.idTipo inner join marca c" + " on a.idMarca=c.idMarca inner join material d "
-					+ " on a.idMaterial=d.idMaterial inner join categoria e"
-					+ " on b.idCategoria = e.idCategoria ";
+					+ " on a.idMaterial=d.idMaterial inner join categoria e" + " on b.idCategoria = e.idCategoria "
+					+ x_forSale + " " + x_now + " " + x_popular + " ";
 			System.out.println("SQL => " + SQL_SELECT);
 			ps = connection.prepareStatement(SQL_SELECT);
 			rs = ps.executeQuery();
@@ -150,7 +160,7 @@ public class ProductoMySQL implements ProductoDAO {
 				material = new MaterialBean();
 				categoria = new CategoriaBean();
 				int i = 1;
-				
+
 				bean.setIdProducto(rs.getString(i++));
 				bean.setCodigo(rs.getString(i++));
 				bean.setNombre(rs.getString(i++));
@@ -216,8 +226,10 @@ public class ProductoMySQL implements ProductoDAO {
 //	public static void main(String[] args) throws Exception {
 //		ProductoMySQL p = new ProductoMySQL();
 //
-//		for (ProductoBean lista : p.getProductosAll()) {
-//			System.out.println(lista.getCodigo() + " / " + lista.getNombre() + " / " + lista.getTipo().getIdTipo() + " / " + lista.getTipo().getNombre() + " / " + lista.getTipo().getCategoria().getNombre());
+//		// for sale - now - popular
+//		for (ProductoBean lista : p.getProductosAll("", "", "")) {
+//			System.out.println(lista.getCodigo() + " / " + lista.getNombre() + " / " + lista.getTipo().getIdTipo()
+//					+ " / " + lista.getTipo().getNombre() + " / " + lista.getTipo().getCategoria().getNombre());
 //		}
 //	}
 

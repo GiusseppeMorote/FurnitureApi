@@ -7,6 +7,7 @@ import edu.cibertec.dao.CategoriaDAO;
 import edu.cibertec.dao.DAOFactory;
 import edu.cibertec.dao.ProductoDAO;
 import edu.cibertec.dao.TipoDAO;
+import edu.cibertec.dao.UsuarioDAO;
 
 public class MysqlDAOFactory extends DAOFactory {
 	static {
@@ -43,5 +44,10 @@ public class MysqlDAOFactory extends DAOFactory {
 	@Override
 	public ProductoDAO getProducto() {
 		return new ProductoMySQL();
+	}
+
+	@Override
+	public UsuarioDAO getUsuarioDAO() {
+		return new UsuarioMySQL();
 	}
 }

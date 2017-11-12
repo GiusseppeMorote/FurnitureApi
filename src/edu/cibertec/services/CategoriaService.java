@@ -46,14 +46,18 @@ public class CategoriaService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getCategoriaEspecifica")
-	public Response getCategoriaEspecifica(JSONObject json) {
-		System.out.println(json);
+	public Response getCategoriaEspecifica(String idCategoria) {
+//		System.out.println(json);
 		List<CategoriaBean> lista = new ArrayList<>();
 		try {
 			
-			String x_idCategoria = json.getString("id");
-			lista = categoriaService.getCategoriaEspecifica(x_idCategoria);
-			System.out.println("idCategoria==>" + x_idCategoria);
+//			String x_idCategoria = json.getString("id");
+			String cadenaId[] = idCategoria.split("=");
+			String id = cadenaId[1];
+			lista = categoriaService.getCategoriaEspecifica(id);
+			
+			
+			System.out.println("idCategoria==>" + idCategoria);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error en CategoriaService() - getCategoriaEspecifica()" + e.getMessage());
@@ -61,6 +65,27 @@ public class CategoriaService {
 		}
 		return Response.ok(lista).status(200).build();
 	}
+	
+	// http://localhost:8080/ApiRestFurniture/categoria/getCategoriaEspecifica
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Path("getCategoriaEspecifica")
+//	public Response getCategoriaEspecifica(JSONObject json) {
+////		System.out.println(json);
+//		List<CategoriaBean> lista = new ArrayList<>();
+//		try {
+//			
+//			String x_idCategoria = json.getString("id");
+//			lista = categoriaService.getCategoriaEspecifica(x_idCategoria);
+//			System.out.println("idCategoria==>" + x_idCategoria);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.err.println("Error en CategoriaService() - getCategoriaEspecifica()" + e.getMessage());
+//			e.getLocalizedMessage();
+//		}
+//		return Response.ok(lista).status(200).build();
+//	}
 	// http://localhost:8080/ApiRestFurniture/categoria/getCategoriaEspecifica/{idCategoria}
 //	@GET
 //	@Produces(MediaType.APPLICATION_JSON)
