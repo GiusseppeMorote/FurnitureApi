@@ -74,7 +74,7 @@ public class UsuarioMySQL implements UsuarioDAO {
 		return b;
 	}
 	
-	private int getUser()
+//	private int getUser()
 
 	@Override
 	public int registrarUsuario(UsuarioBean b) throws Exception {
