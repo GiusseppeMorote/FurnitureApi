@@ -42,7 +42,7 @@ public class UsuarioMySQL implements UsuarioDAO {
 
 		try {
 			cn = MysqlDAOFactory.obtenerConexion(base);
-			sql = " select idUsuario, nickname, email, clave, fechaRegistro, "
+			sql = " select idUsuario, email, clave, fechaRegistro, "
 					+ " tipo, nombre, apellido, dni, fechaNacimiento, telefono, direccion, estado from usuario a "
 					+ " where a.email = ?  and a.clave = ?";
 			ps = cn.prepareStatement(sql);
@@ -52,7 +52,6 @@ public class UsuarioMySQL implements UsuarioDAO {
 			rs.next();
 			int i = 1;
 			b.setIdUsuario(rs.getString(i++));
-			b.setNickname(rs.getString(i++));
 			b.setEmail(rs.getString(i++));
 			b.setClave(rs.getString(i++));
 			b.setFechaRegistro(rs.getString(i++));
@@ -74,6 +73,8 @@ public class UsuarioMySQL implements UsuarioDAO {
 		}
 		return b;
 	}
+	
+	private int getUser()
 
 	@Override
 	public int registrarUsuario(UsuarioBean b) throws Exception {
