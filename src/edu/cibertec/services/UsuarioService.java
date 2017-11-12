@@ -46,9 +46,9 @@ public class UsuarioService {
 	public Response insertUser(UsuarioBean b) throws Exception {
 		int data = usuarioService.registrarUsuario(b);
 		if (data == 0) {
-			return Response.status(400).build();
+			return Response.status(400).entity(data).build();
 		} else if (data == 2) {
-			return Response.status(409).build();
+			return Response.status(409).entity(data).build();
 		} else if (data == 1) {
 			return Response.status(200).entity(data).build();
 		} else {
