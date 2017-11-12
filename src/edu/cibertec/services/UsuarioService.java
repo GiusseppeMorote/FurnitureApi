@@ -25,7 +25,7 @@ public class UsuarioService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("CredencialUser/{email}/{password}")
-	public Response CredencialUser(@PathParam("email") String email, @PathParam("password") String password) throws Exception{
+	public Response CredencialUser(String email, String password) throws Exception{
 		UsuarioBean b = new UsuarioBean();
 		System.out.println("EMAIL " + email + " PASS " + password );
 		int valid = usuarioService.validarCredenciales(email, password);

@@ -75,4 +75,10 @@ public class UsuarioMySQL implements UsuarioDAO {
 		return b;
 	}
 
+	@Override
+	public int registrarUsuario(UsuarioBean b) throws Exception {
+		int dato = 0;
+		return dato;
+	}
+
 }

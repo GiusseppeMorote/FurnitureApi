@@ -7,4 +7,6 @@ public interface UsuarioDAO {
 	public UsuarioBean Credenciales(String email, String password) throws Exception;
 	
 	public int validarCredenciales(String email, String password) throws Exception;
+	
+	public int registrarUsuario(UsuarioBean b) throws Exception;
 }
