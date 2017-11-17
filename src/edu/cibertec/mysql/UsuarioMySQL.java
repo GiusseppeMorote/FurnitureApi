@@ -10,13 +10,13 @@ import edu.cibertec.dao.UsuarioDAO;
 public class UsuarioMySQL implements UsuarioDAO {
 
 	@Override
-	public int validarCredenciales(String email, String password) throws Exception {
+	public int validarCredenciales(UsuarioBean b) throws Exception {
 		int dato = 0;
 		Connection cn = MysqlDAOFactory.obtenerConexion("furniture");
 		String sql = " select count(*) as cant from usuario a where a.email = ? and a.clave = ?";
 		PreparedStatement ps = cn.prepareStatement(sql);
-		ps.setString(1, email);
-		ps.setString(2, password);
+		ps.setString(1, b.getEmail());
+		ps.setString(2, b.getClave());
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		dato = rs.getInt("cant");
@@ -27,7 +27,7 @@ public class UsuarioMySQL implements UsuarioDAO {
 	}
 
 	@Override
-	public UsuarioBean Credenciales(String email, String password) throws Exception {
+	public UsuarioBean Credenciales(UsuarioBean bean) throws Exception {
 		UsuarioBean b = new UsuarioBean();
 		String base = "furniture";
 		String sql = "";
@@ -41,8 +41,8 @@ public class UsuarioMySQL implements UsuarioDAO {
 					+ " tipo, nombre, apellido, dni, fechaNacimiento, telefono, direccion, estado from usuario a "
 					+ " where a.email = ?  and a.clave = ?";
 			ps = cn.prepareStatement(sql);
-			ps.setString(1, email);
-			ps.setString(2, password);
+			ps.setString(1, bean.getEmail());
+			ps.setString(2, bean.getClave());
 			rs = ps.executeQuery();
 			rs.next();
 			int i = 1;

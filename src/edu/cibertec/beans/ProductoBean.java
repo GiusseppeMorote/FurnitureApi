@@ -49,7 +49,7 @@ public class ProductoBean implements Serializable {
 	private String estado;
 
 	public ProductoBean() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public TipoBean getTipo() {

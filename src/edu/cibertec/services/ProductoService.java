@@ -24,7 +24,7 @@ public class ProductoService {
 	public ArrayList<ProductoBean> getProductosForSale() {
 		ArrayList<ProductoBean> lista = null;
 		try {
-			lista = objProducto.getProductosAll("a", "", "");
+			lista = objProducto.getProductosAll("a");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class ProductoService {
 	public ArrayList<ProductoBean> getProductosNow() {
 		ArrayList<ProductoBean> lista = null;
 		try {
-			lista = objProducto.getProductosAll("", "a", "");
+			lista = objProducto.getProductosAll("b");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error en ProductoService - getProductos");
@@ -55,7 +55,7 @@ public class ProductoService {
 	public ArrayList<ProductoBean> getProductosPopular() {
 		ArrayList<ProductoBean> lista = null;
 		try {
-			lista = objProducto.getProductosAll("", "", "a");
+			lista = objProducto.getProductosAll("c");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Error en ProductoService - getProductos");

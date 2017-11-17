@@ -11,6 +11,13 @@ public class UsuarioBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String aceptaTermino;
+	private String codigo;
+	private String codigoVerificacion;
+	private String estadoverificacion;
+	private String sexo;
+	private String usuario;
+	
 	private String idUsuario;
 	private String email;
 	private String clave;

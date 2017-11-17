@@ -109,7 +109,7 @@ public class ProductoMySQL implements ProductoDAO {
 	}
 
 	@Override
-	public ArrayList<ProductoBean> getProductosAll(String forSale, String now, String popular) throws Exception {
+	public ArrayList<ProductoBean> getProductosAll(String letter) throws Exception {
 		ArrayList<ProductoBean> lista = new ArrayList<>();
 		MarcaBean marca = null;
 		MaterialBean material = null;
@@ -127,16 +127,16 @@ public class ProductoMySQL implements ProductoDAO {
 		String x_popular = "";
 		try {
 			connection = MysqlDAOFactory.obtenerConexion(base);
-			if (!forSale.equals("")) {
+			if (letter.equals("a")) {
 				x_forSale = "";
-			}
-
-			if (!now.equals("")) {
+			} else if (letter.equals("b")) {
 				x_now = " order by a.fechaRegistro desc ";
-			}
-
-			if (!popular.equals("")) {
+			} else if (letter.equals("c")) {
 				x_popular = " where a.stockActual <=25 ";
+			} else {
+				x_forSale = "";
+				x_now = "";
+				x_popular = "";
 			}
 			SQL_SELECT = " select a.idProducto, a.codigo, a.nombre, a.imagen, a.precio, "
 					+ " a.descuento, a.stockMinimo, a.stockActual, a.garantia, a.recomendacion, "
@@ -148,7 +148,7 @@ public class ProductoMySQL implements ProductoDAO {
 					+ " on a.idTipo=b.idTipo inner join marca c" + " on a.idMarca=c.idMarca inner join material d "
 					+ " on a.idMaterial=d.idMaterial inner join categoria e" + " on b.idCategoria = e.idCategoria "
 					+ x_forSale + " " + x_now + " " + x_popular + " ";
-			System.out.println("SQL => " + SQL_SELECT);
+//			System.out.println("SQL => " + SQL_SELECT);
 			ps = connection.prepareStatement(SQL_SELECT);
 			rs = ps.executeQuery();
 
@@ -223,14 +223,16 @@ public class ProductoMySQL implements ProductoDAO {
 		return lista;
 	}
 
-//	public static void main(String[] args) throws Exception {
-//		ProductoMySQL p = new ProductoMySQL();
-//
-//		// for sale - now - popular
-//		for (ProductoBean lista : p.getProductosAll("", "", "")) {
-//			System.out.println(lista.getCodigo() + " / " + lista.getNombre() + " / " + lista.getTipo().getIdTipo()
-//					+ " / " + lista.getTipo().getNombre() + " / " + lista.getTipo().getCategoria().getNombre());
-//		}
-//	}
+	// public static void main(String[] args) throws Exception {
+	// ProductoMySQL p = new ProductoMySQL();
+	//
+	// // for sale - now - popular
+	// for (ProductoBean lista : p.getProductosAll("", "", "")) {
+	// System.out.println(lista.getCodigo() + " / " + lista.getNombre() + " / "
+	// + lista.getTipo().getIdTipo()
+	// + " / " + lista.getTipo().getNombre() + " / " +
+	// lista.getTipo().getCategoria().getNombre());
+	// }
+	// }
 
 }
